@@ -71,6 +71,7 @@ export default function Navbar() {
         <a
           href="#"
           id="nav-cta"
+          aria-label="Get started with NexaFlow — sign up free"
           className="hidden shrink-0 rounded-lg px-5 py-2.5 text-sm font-bold
                      transition-all duration-200 hover:brightness-105 hover:shadow-md
                      md:inline-flex md:items-center md:gap-1.5"
@@ -175,6 +176,7 @@ export default function Navbar() {
               href="#"
               onClick={closeMenu}
               id="nav-cta-mobile"
+              aria-label="Get started with NexaFlow — sign up free"
               className="flex w-full items-center justify-center gap-2 rounded-lg
                          px-5 py-3 text-sm font-bold transition-all duration-200
                          hover:brightness-105"

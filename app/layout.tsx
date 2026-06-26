@@ -20,24 +20,85 @@ const inter = Inter({
   weight: ["400", "500", "600", "700"],
 });
 
+// ─── metadataBase is required for Next.js to resolve absolute OG image URLs ─
+// Without it Next.js emits a warning and social-sharing previews break.
 export const metadata: Metadata = {
-  title: "NexaFlow — AI Data Automation Platform",
+  metadataBase: new URL("https://nexaflow.io"),
+
+  // ── Primary tags ────────────────────────────────────────────────────────
+  title: {
+    default: "NexaFlow — AI Data Automation Platform",
+    // Pages can override: title: { template: "%s | NexaFlow" }
+    template: "%s | NexaFlow",
+  },
   description:
-    "NexaFlow automates your data workflows with AI-powered pipelines. Connect, transform, and ship data faster than ever — no code required.",
+    "NexaFlow automates every step of your data workflow — ingestion, transformation, enrichment, and delivery. No-code AI pipelines for modern engineering teams.",
   keywords: [
-    "AI automation",
-    "data pipeline",
-    "SaaS",
-    "no-code",
+    "AI data automation",
+    "data pipeline platform",
+    "no-code ETL",
+    "data integration SaaS",
+    "AI workflow automation",
     "NexaFlow",
-    "data integration",
+    "data engineering tool",
+    "LLM data transformation",
   ],
+
+  // ── Canonical & robots ─────────────────────────────────────────────────
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
+  // ── Open Graph ──────────────────────────────────────────────────────────
   openGraph: {
+    type: "website",
+    url: "https://nexaflow.io",
+    siteName: "NexaFlow",
     title: "NexaFlow — AI Data Automation Platform",
     description:
-      "NexaFlow automates your data workflows with AI-powered pipelines.",
-    type: "website",
+      "Ship data pipelines 10× faster with AI. NexaFlow connects any source, applies AI transformations, and delivers clean data — in minutes, not months.",
+    locale: "en_US",
+    images: [
+      {
+        url: "/og-image.png",           // 1200×630 — add to /public when ready
+        width: 1200,
+        height: 630,
+        alt: "NexaFlow dashboard showing an AI-powered data pipeline connecting multiple data sources",
+        type: "image/png",
+      },
+    ],
   },
+
+  // ── Twitter / X card ───────────────────────────────────────────────────
+  twitter: {
+    card: "summary_large_image",
+    site: "@nexaflow",
+    creator: "@nexaflow",
+    title: "NexaFlow — AI Data Automation Platform",
+    description:
+      "Ship data pipelines 10× faster with AI. No-code data workflows for modern engineering teams.",
+    images: [
+      {
+        url: "/og-image.png",
+        alt: "NexaFlow dashboard showing an AI-powered data pipeline",
+      },
+    ],
+  },
+
+  // ── App / PWA hints ────────────────────────────────────────────────────
+  applicationName: "NexaFlow",
+  authors: [{ name: "NexaFlow, Inc.", url: "https://nexaflow.io" }],
+  category: "Technology",
 };
 
 export default function RootLayout({

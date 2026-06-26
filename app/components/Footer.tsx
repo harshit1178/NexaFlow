@@ -115,13 +115,13 @@ export default function Footer() {
           {/* ── Link columns ─── */}
           {footerColumns.map((col) => (
             <nav key={col.heading} aria-label={`${col.heading} links`}>
-              {/* Column heading — white on near-black */}
-              <h2
+              {/* Column heading — h3 (h1 = hero, h2 = section titles, h3 = sub-headings) */}
+              <h3
                 className="mb-5 text-xs font-bold uppercase tracking-widest"
                 style={{ fontFamily: "var(--font-mono)", color: "white" }}
               >
                 {col.heading}
-              </h2>
+              </h3>
 
               <ul className="flex flex-col gap-3" role="list">
                 {col.links.map((link) => (
@@ -163,10 +163,9 @@ export default function Footer() {
             style={{ color: "rgba(217,232,226,0.30)" }}
           >
             Built with{" "}
-            <span style={{ color: "var(--orange)" }} aria-label="love">
-              ♥
-            </span>{" "}
-            for data teams everywhere.
+            {/* Decorative heart — aria-hidden so screen readers read "Built with for data teams" smoothly */}
+            <span style={{ color: "var(--orange)" }} aria-hidden="true">♥</span>
+            {" "}for data teams everywhere.
           </p>
         </div>
       </div>

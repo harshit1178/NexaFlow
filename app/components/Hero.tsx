@@ -106,6 +106,7 @@ export default function Hero() {
           <a
             href="#"
             id="hero-primary-cta"
+            aria-label="Start NexaFlow for free — no credit card required"
             className="group relative w-full overflow-hidden rounded-xl px-8 py-4 text-base
                        font-bold transition-all duration-300 hover:shadow-[0_0_32px_0_rgba(255,200,1,0.35)]
                        sm:w-auto"
@@ -127,6 +128,7 @@ export default function Hero() {
           <a
             href="#features"
             id="hero-secondary-cta"
+            aria-label="See how NexaFlow works — scroll to Features section"
             className="w-full rounded-xl border px-8 py-4 text-base font-semibold
                        transition-all duration-200 hover:bg-white/10 sm:w-auto"
             style={{

@@ -132,7 +132,7 @@ export default function HomePage() {
       <Navbar />
 
       {/* ── Main content ───────────────────────────────────────────────── */}
-      <main>
+      <main aria-label="Main content">
         {/* ── Hero ────────────────────────────────────────────────────── */}
         <Hero />
 
@@ -238,6 +238,7 @@ export default function HomePage() {
                     <span
                       className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full
                                  px-4 py-1 text-xs font-bold"
+                      role="img"
                       aria-label="Recommended plan"
                       style={{
                         background: "var(--accent-yellow)",
@@ -297,6 +298,7 @@ export default function HomePage() {
                   <a
                     href={plan.ctaHref}
                     id={`pricing-cta-${plan.name.toLowerCase()}`}
+                    aria-label={`${plan.cta} — ${plan.name} plan`}
                     className="block rounded-xl px-6 py-3 text-center text-sm font-bold
                                transition-all duration-200 hover:brightness-110"
                     style={
