@@ -52,9 +52,9 @@ export default function Hero() {
 
       {/* ── Content ─────────────────────────────────────────────────────── */}
       <div className="relative mx-auto max-w-4xl">
-        {/* Public beta pill */}
+        {/* Public beta pill — hero-animate-1: 0ms delay, completes 280ms */}
         <p
-          className="mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5
+          className="hero-animate hero-animate-1 mb-7 inline-flex items-center gap-2 rounded-full border px-4 py-1.5
                      text-xs font-semibold uppercase tracking-widest"
           style={{
             borderColor: "rgba(217,232,226,0.25)",
@@ -74,10 +74,10 @@ export default function Hero() {
           Now in public beta
         </p>
 
-        {/* ── Main headline ─── */}
+        {/* ── Main headline ─── hero-animate-2: 50ms delay, completes 330ms */}
         <h1
           id="hero-heading"
-          className="mb-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-white
+          className="hero-animate hero-animate-2 mb-6 text-5xl font-extrabold leading-[1.05] tracking-tight text-white
                      sm:text-6xl md:text-7xl"
           style={{ fontFamily: "var(--font-mono)" }}
         >
@@ -87,9 +87,9 @@ export default function Hero() {
           {" "}with AI
         </h1>
 
-        {/* ── Sub-heading (Inter) ─── */}
+        {/* ── Sub-heading (Inter) ─── hero-animate-3: 100ms delay, completes 380ms */}
         <p
-          className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed sm:text-xl"
+          className="hero-animate hero-animate-3 mx-auto mb-10 max-w-2xl text-lg leading-relaxed sm:text-xl"
           style={{
             fontFamily: "var(--font-sans)",
             color: "rgba(217,232,226,0.82)", // --mint at 82% opacity
@@ -100,15 +100,15 @@ export default function Hero() {
           in plain English. Our AI handles the rest.
         </p>
 
-        {/* ── CTA pair ─── */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        {/* ── CTA pair ─── hero-animate-4: 150ms delay, completes 430ms */}
+        <div className="hero-animate hero-animate-4 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           {/* Primary — filled accent-yellow, dark text for contrast */}
           <a
             href="#"
             id="hero-primary-cta"
             aria-label="Start NexaFlow for free — no credit card required"
             className="group relative w-full overflow-hidden rounded-xl px-8 py-4 text-base
-                       font-bold transition-all duration-300 hover:shadow-[0_0_32px_0_rgba(255,200,1,0.35)]
+                       font-bold transition-all duration-200 hover:shadow-[0_0_32px_0_rgba(255,200,1,0.35)]
                        sm:w-auto"
             style={{
               background: "var(--accent-yellow)",
@@ -140,8 +140,8 @@ export default function Hero() {
           </a>
         </div>
 
-        {/* ── Social proof strip ─── */}
-        <div className="mt-14">
+        {/* ── Social proof strip ─── hero-animate-5: 200ms delay, completes 480ms */}
+        <div className="hero-animate hero-animate-5 mt-14">
           <p
             className="mb-5 text-xs font-semibold uppercase tracking-widest"
             style={{ color: "rgba(217,232,226,0.45)" }}
