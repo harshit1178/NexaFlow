@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* ─── NexaFlow Design Tokens ─────────────────────────────────────────────── */
+:root {
+  /* Brand palette */
+  --bg-light:      #F1F6F4; /* Arctic Powder     — pair with dark text        */
+  --accent-yellow: #FFC801; /* Forsythia         — pair with dark text        */
+  --dark-navy:     #114C5A; /* Nocturnal Exp.    — pair with light/white text */
+  --mint:          #D9E8E2; /* Mystic Mint       — pair with dark text        */
+  --orange:        #FF9932; /* Deep Saffron      — pair with dark text        */
+  --near-black:    #172B36; /* Oceanic Noir      — pair with light/white text */
+
+  /* Semantic aliases */
+  --background: var(--bg-light);
+  --foreground: var(--near-black);
+}
+
+/* ─── Tailwind v4 theme bridge ───────────────────────────────────────────── */
+@theme inline {
+  --color-background:    var(--background);
+  --color-foreground:    var(--foreground);
+  --color-bg-light:      var(--bg-light);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-dark-navy:     var(--dark-navy);
+  --color-mint:          var(--mint);
+  --color-orange:        var(--orange);
+  --color-near-black:    var(--near-black);
+
+  /* Font variables set by next/font/google in layout.tsx */
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-light);
+  color: var(--near-black);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* Headings use JetBrains Mono for a technical/code-forward aesthetic */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-mono), monospace;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Nav link hover underline ───────────────────────────────────────────── */
+/* Grows an orange underline from left to right on hover */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--orange);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Shimmer animation (used by Hero primary CTA) ──────────────────────── */
+@keyframes shimmer {
+  from { transform: translateX(-100%) skewX(-12deg); }
+  to   { transform: translateX(200%)  skewX(-12deg); }
+}
+
+.btn-shimmer:hover .shimmer-inner {
+  animation: shimmer 0.6s ease forwards;
+}
+
+/* ─── Footer link hover ──────────────────────────────────────────────────── */
+/* Used in Footer.tsx — muted mint text that brightens on hover */
+.footer-link {
+  color: rgba(217, 232, 226, 0.55);
+  transition: color 0.2s ease;
+}
+
+.footer-link:hover {
+  color: var(--mint);
+}
+
+/* ─── Footer social icon hover ───────────────────────────────────────────── */
+.footer-social {
+  color: rgba(217, 232, 226, 0.50);
+  background: rgba(255, 255, 255, 0.06);
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.footer-social:hover {
+  color: var(--accent-yellow);
+  background: rgba(255, 255, 255, 0.12);
+}
+
