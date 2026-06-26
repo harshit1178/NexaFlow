@@ -3,12 +3,18 @@
 /* ─── NexaFlow Design Tokens ─────────────────────────────────────────────── */
 :root {
   /* Brand palette */
-  --bg-light:      #F1F6F4; /* Arctic Powder     — pair with dark text        */
-  --accent-yellow: #FFC801; /* Forsythia         — pair with dark text        */
-  --dark-navy:     #114C5A; /* Nocturnal Exp.    — pair with light/white text */
-  --mint:          #D9E8E2; /* Mystic Mint       — pair with dark text        */
-  --orange:        #FF9932; /* Deep Saffron      — pair with dark text        */
-  --near-black:    #172B36; /* Oceanic Noir      — pair with light/white text */
+  --bg-light: #F1F6F4;
+  /* Arctic Powder     — pair with dark text        */
+  --accent-yellow: #FFC801;
+  /* Forsythia         — pair with dark text        */
+  --dark-navy: #114C5A;
+  /* Nocturnal Exp.    — pair with light/white text */
+  --mint: #D9E8E2;
+  /* Mystic Mint       — pair with dark text        */
+  --orange: #FF9932;
+  /* Deep Saffron      — pair with dark text        */
+  --near-black: #172B36;
+  /* Oceanic Noir      — pair with light/white text */
 
   /* Semantic aliases */
   --background: var(--bg-light);
@@ -17,14 +23,14 @@
 
 /* ─── Tailwind v4 theme bridge ───────────────────────────────────────────── */
 @theme inline {
-  --color-background:    var(--background);
-  --color-foreground:    var(--foreground);
-  --color-bg-light:      var(--bg-light);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-bg-light: var(--bg-light);
   --color-accent-yellow: var(--accent-yellow);
-  --color-dark-navy:     var(--dark-navy);
-  --color-mint:          var(--mint);
-  --color-orange:        var(--orange);
-  --color-near-black:    var(--near-black);
+  --color-dark-navy: var(--dark-navy);
+  --color-mint: var(--mint);
+  --color-orange: var(--orange);
+  --color-near-black: var(--near-black);
 
   /* Font variables set by next/font/google in layout.tsx */
   --font-sans: var(--font-inter);
@@ -52,7 +58,12 @@ body {
 }
 
 /* Headings use JetBrains Mono for a technical/code-forward aesthetic */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-mono), monospace;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -82,8 +93,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ─── Shimmer animation (used by Hero primary CTA) ──────────────────────── */
 @keyframes shimmer {
-  from { transform: translateX(-100%) skewX(-12deg); }
-  to   { transform: translateX(200%)  skewX(-12deg); }
+  from {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+
+  to {
+    transform: translateX(200%) skewX(-12deg);
+  }
 }
 
 .btn-shimmer:hover .shimmer-inner {
@@ -113,3 +129,226 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.12);
 }
 
+/* ─── Pricing toggle ──────────────────────────────────────────────────────── */
+.pricing-toggle {
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* Hover only fires on the INACTIVE button (active has aria-checked=true) */
+.pricing-toggle-btn:hover:not([aria-checked="true"]) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: rgba(217, 232, 226, 0.90) !important;
+  transition: background 150ms ease-out, color 150ms ease-out;
+}
+
+/* Active button focus ring */
+.pricing-toggle-btn:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+/* ─── Currency select ─────────────────────────────────────────────────────── */
+.pricing-currency-select:hover {
+  border-color: rgba(255, 255, 255, 0.28) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  transition: border-color 180ms ease-out, background 180ms ease-out;
+}
+
+.pricing-currency-select:focus {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+  border-color: var(--accent-yellow) !important;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   FEATURES SECTION — Bento Grid (desktop) + Accordion (mobile)
+   Show/hide toggled by Tailwind utilities: `hidden md:grid` / `md:hidden`
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ── Bento Grid asymmetric layout ─────────────────────────────────────────── */
+/*
+  3-column template:
+    Row 1: [ pipelines ×2 cols        ] [ ai ×1 col, rowspan 2 ]
+    Row 2: [ connectors ] [ observ.   ] [    ai continued       ]
+    Row 3: [ security   ] [ infra ×2 cols                       ]
+*/
+.bento-grid {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "bento-pipelines bento-pipelines bento-ai"
+    "bento-connectors bento-observability bento-ai"
+    "bento-security bento-infra bento-infra";
+  gap: 1.25rem;
+}
+
+/* Grid-area assignments — these must match the bentoClass prop */
+.bento-pipelines     { grid-area: bento-pipelines;     min-height: 220px; }
+.bento-ai            { grid-area: bento-ai; }
+.bento-connectors    { grid-area: bento-connectors;    min-height: 200px; }
+.bento-observability { grid-area: bento-observability; min-height: 200px; }
+.bento-security      { grid-area: bento-security;      min-height: 200px; }
+.bento-infra         { grid-area: bento-infra;         min-height: 200px; }
+
+/* ── Bento Card ───────────────────────────────────────────────────────────── */
+.bento-card {
+  background: white;
+  border: 1px solid var(--mint);
+  border-radius: 1.25rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  /* Hover: 200ms ease-out per spec */
+  transition:
+    transform    200ms ease-out,
+    box-shadow   200ms ease-out,
+    border-color 200ms ease-out;
+
+  /* Start invisible; .features-visible parent drives entrance animation */
+  opacity: 0;
+}
+
+.bento-card:hover {
+  transform:    translateY(-5px);
+  box-shadow:   0 16px 48px rgba(17, 76, 90, 0.13);
+  border-color: var(--dark-navy);
+}
+
+/* ── Entrance animation ───────────────────────────────────────────────────── */
+/*
+  Uses filter:blur (not transform) for entrance so that the hover
+  transform:translateY(-5px) has zero cascade conflict.
+  Last card fires at delay:200ms + duration:260ms = 460ms < 500ms ✓
+*/
+.features-visible .bento-card {
+  animation: feat-fade-in 260ms ease-out both;
+}
+.features-visible .bento-card:nth-child(1) { animation-delay:   0ms; }
+.features-visible .bento-card:nth-child(2) { animation-delay:  40ms; }
+.features-visible .bento-card:nth-child(3) { animation-delay:  80ms; }
+.features-visible .bento-card:nth-child(4) { animation-delay: 120ms; }
+.features-visible .bento-card:nth-child(5) { animation-delay: 160ms; }
+.features-visible .bento-card:nth-child(6) { animation-delay: 200ms; }
+
+@keyframes feat-fade-in {
+  from { opacity: 0; filter: blur(4px); }
+  to   { opacity: 1; filter: blur(0);   }
+}
+
+/* Icon badge — used inside both bento cards and accordion headers */
+.feat-icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* ── Accordion Items ──────────────────────────────────────────────────────── */
+.accordion-item {
+  background: white;
+  border: 1px solid var(--mint);
+  border-radius: 0.875rem;
+  overflow: hidden;
+}
+
+/* Header toggle button — hover 150ms ease-out per spec */
+.accordion-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.875rem 1.125rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 150ms ease-out;
+}
+
+.accordion-btn:hover {
+  background: rgba(217, 232, 226, 0.40);
+}
+
+.accordion-btn:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: -2px;
+  border-radius: 0.875rem;
+}
+
+/*
+  Chevron wrapper — CSS transition on transform so the rotation animates.
+  transform value is set imperatively via chevronRef.style.transform in JS.
+  The CSS engine picks up the change and applies the 350ms ease-in-out.
+*/
+.accordion-chevron {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-navy);
+  flex-shrink: 0;
+  transition: transform 350ms ease-in-out;
+}
+
+/* Panel — height & opacity driven by WAAPI (openPanelAt / closePanelAt) */
+.accordion-panel {
+  overflow: hidden;
+}
+
+.accordion-desc {
+  padding: 0 1.125rem 1.125rem 1.125rem;
+  font-size: 0.875rem;
+  line-height: 1.75;
+  color: rgba(23, 43, 54, 0.70);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════════
+   TESTIMONIALS CAROUSEL
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* Prev / Next buttons (chevron-left / chevron-right) */
+.carousel-nav-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--mint);
+  cursor: pointer;
+  /* hover: 150ms ease-out */
+  transition: background 150ms ease-out, border-color 150ms ease-out, transform 150ms ease-out;
+}
+
+.carousel-nav-btn:hover {
+  background: var(--dark-navy) !important;
+  border-color: var(--dark-navy);
+  color: white !important;
+  transform: scale(1.08);
+}
+
+.carousel-nav-btn:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 2px;
+}
+
+/* Slide indicator dots */
+.carousel-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  /* Scale transition driven by inline style (React) + CSS transition */
+  transition: background 250ms ease-out, transform 250ms ease-out;
+}
+
+.carousel-dot:focus-visible {
+  outline: 2px solid var(--accent-yellow);
+  outline-offset: 3px;
+}

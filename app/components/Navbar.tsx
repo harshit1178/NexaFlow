@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { SearchIcon, XMarkIcon } from "@/app/components/Icons";
 
 const navLinks = [
   { href: "#features",     label: "Features"     },
@@ -81,57 +82,43 @@ export default function Navbar() {
           }}
         >
           Get Started
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-            className="mt-px"
-          >
-            <path
-              d="M2.5 7h9m-4-4.5 4.5 4.5L7.5 11.5"
-              stroke="currentColor"
-              strokeWidth="1.75"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" className="mt-px">
+            <path d="M2.5 7h9m-4-4.5 4.5 4.5L7.5 11.5" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </a>
 
-        {/* Mobile: hamburger button */}
+        {/* Desktop: search button — search.svg icon */}
         <button
           type="button"
-          className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded-lg
+          aria-label="Search NexaFlow documentation and features"
+          className="hidden h-9 w-9 items-center justify-center rounded-lg
+                     transition-colors duration-200 hover:bg-black/6 md:flex"
+          style={{ color: "var(--dark-navy)" }}
+        >
+          <SearchIcon size={17} />
+        </button>
+
+        {/* Mobile: hamburger / close button */}
+        <button
+          type="button"
+          className="flex h-10 w-10 items-center justify-center rounded-lg
                      transition-colors duration-200 hover:bg-black/5 md:hidden"
           aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={menuOpen}
           aria-controls="mobile-menu"
           onClick={() => setMenuOpen((o) => !o)}
         >
-          {/* Animated hamburger → X icon using pure CSS transforms */}
-          <span
-            className="block h-0.5 w-5 rounded-full transition-all duration-300 ease-in-out"
-            style={{
-              background: "var(--near-black)",
-              transform: menuOpen ? "translateY(7px) rotate(45deg)" : undefined,
-            }}
-          />
-          <span
-            className="block h-0.5 w-5 rounded-full transition-all duration-200 ease-in-out"
-            style={{
-              background: "var(--near-black)",
-              opacity: menuOpen ? 0 : 1,
-              transform: menuOpen ? "scaleX(0)" : undefined,
-            }}
-          />
-          <span
-            className="block h-0.5 w-5 rounded-full transition-all duration-300 ease-in-out"
-            style={{
-              background: "var(--near-black)",
-              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : undefined,
-            }}
-          />
+          {menuOpen ? (
+            /* x-mark.svg — close icon */
+            <XMarkIcon size={22} />
+          ) : (
+            /* Three-bar hamburger */
+            <span className="flex flex-col gap-1.5" aria-hidden="true">
+              <span className="block h-0.5 w-5 rounded-full" style={{ background: "var(--near-black)" }} />
+              <span className="block h-0.5 w-5 rounded-full" style={{ background: "var(--near-black)" }} />
+              <span className="block h-0.5 w-5 rounded-full" style={{ background: "var(--near-black)" }} />
+            </span>
+          )}
         </button>
       </nav>
 
